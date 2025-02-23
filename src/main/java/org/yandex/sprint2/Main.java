@@ -24,25 +24,27 @@ class Main {
                     stepTracker.printStatistic();
                     break;
                 case 4:
-                    System.out.println("Выход из программы");
                     return;
                 default:
-                    System.out.println("Недействительная команда. Введите номер от 1 до 4 (включительно).");
+                    System.out.println("Неверный код команды. Введите код от 1 до 4 (включительно).");
                     break;
             }
         }
     }
 
     private static final String MENU = """
-            Меню:
-            1. Ввод количество шагов за день
-            2. Изменение целевого количество шагов за месяц
-            3. Вывод статистики за месяц
-            4. Выход из программы
+            Введите код команды:
+            1. Ввести количество шагов за определённый день
+            2. Изменить цель по количеству шагов в день
+            3. Напечатать статистику за определённый месяц
+            4. Выйти из приложения
             """;
+
+    private static final String INPUT = "--> ";
 
     static void printMenu() {
         // вывод доступных команд
-        System.out.println(MENU);
+        System.out.print(MENU);
+        System.out.print(INPUT);
     }
 }

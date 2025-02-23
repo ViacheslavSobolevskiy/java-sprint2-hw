@@ -8,7 +8,7 @@ class MonthData {
     void printDaysAndStepsFromMonth() {
         for (int i = 0; i < days.length; i++) {
             // вывод элементов массива в нужном формате
-            System.out.println((i + 1) + " день: " + days[i]);
+            System.out.println((i + 1) + "-й день: " + days[i]);
         }
     }
 
