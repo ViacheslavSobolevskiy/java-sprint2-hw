@@ -1,7 +1,5 @@
 package org.yandex.sprint2;
 
-import java.util.Arrays;
-
 class MonthData {
     int[] days = new int[30];
 
