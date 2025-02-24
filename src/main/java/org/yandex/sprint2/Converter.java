@@ -1,11 +1,13 @@
 package org.yandex.sprint2;
 
+import static org.yandex.sprint2.Constants.*;
+
 class Converter {
     int convertToKm(int steps) {
-        return (steps * 75) / 1000_00; // 1 шаг = 75 см; 1 км = 100000 см
+        return (steps * SM_PER_STEP) / SM_PER_KM;
     }
 
     int convertStepsToKilocalories(int steps) {
-        return (steps * 50) / 1000; // 1 шаг = 50 кал; 1 ккал = 1000 кал.
+        return (steps * CALORIES_PER_STEP) / CALORIES_PER_KILOCALORIES;
     }
 }

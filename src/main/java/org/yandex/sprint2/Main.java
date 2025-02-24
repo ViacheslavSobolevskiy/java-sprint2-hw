@@ -2,8 +2,9 @@ package org.yandex.sprint2;
 
 import java.util.Scanner;
 
-class Main {
+import static org.yandex.sprint2.Constants.*;
 
+class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         StepTracker stepTracker = new StepTracker(scanner);
@@ -31,16 +32,6 @@ class Main {
             }
         }
     }
-
-    private static final String MENU = """
-            Введите код команды:
-            1. Ввести количество шагов за определённый день
-            2. Изменить цель по количеству шагов в день
-            3. Напечатать статистику за определённый месяц
-            4. Выйти из приложения
-            """;
-
-    private static final String INPUT = "--> ";
 
     static void printMenu() {
         // вывод доступных команд

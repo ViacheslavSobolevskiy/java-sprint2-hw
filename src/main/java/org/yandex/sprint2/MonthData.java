@@ -1,19 +1,19 @@
 package org.yandex.sprint2;
 
+import static org.yandex.sprint2.Constants.*;
+
 class MonthData {
-    int[] days = new int[30];
+    int[] days = new int[MAX_DAY - MIN_DAY + 1];
 
     void printDaysAndStepsFromMonth() {
         for (int i = 0; i < days.length; i++) {
-            // вывод элементов массива в нужном формате
-            System.out.println((i + 1) + "-й день: " + days[i]);
+            System.out.println((i + MIN_DAY) + "-й день: " + days[i]);
         }
     }
 
     int sumStepsFromMonth() {
         int sumSteps = 0;
         for (int i = 0; i < days.length; i++) {
-            // подсчёт суммы элементов массива days[]
             sumSteps += days[i];
         }
         return sumSteps;
@@ -32,7 +32,6 @@ class MonthData {
         int currentSeries = 0;
         int finalSeries = 0;
         for (int i = 0; i < days.length; i++) {
-            // поиск максимальной серии
             currentSeries = (days[i] >= goalByStepsPerDay) ? currentSeries + 1 : 0;
             if (currentSeries > finalSeries)
                 finalSeries = currentSeries;

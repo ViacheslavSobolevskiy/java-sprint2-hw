@@ -1,26 +1,20 @@
 package org.yandex.sprint2;
 
+import java.util.Arrays;
 import java.util.Scanner;
 
-class StepTracker {
-    Scanner scanner;
-    MonthData[] monthToData = new MonthData[12];
-    int goalByStepsPerDay = 10_000;
-    Converter converter = new Converter();
+import static org.yandex.sprint2.Constants.*;
 
-    private static final String monthInput = """
-                Введите номер месяца
-                1 - Январь, 2 - Февраль, 3 - Март, 4 - Апрель, 5 - Май, 6 - Июнь,
-                7 - Июль, 8 - Август, 9 - Сентябрь, 10 - Октябрь, 11 - Ноябрь, 12 - Декабрь
-                """;
-    private static final String INPUT = "--> ";
+class StepTracker {
+
+    Scanner scanner;
+    MonthData[] monthToData = new MonthData[MAX_MONTH - MIN_MONTH + 1];
+    int goalByStepsPerDay = DEFAULT_STEPS_PER_DAY;
+    Converter converter = new Converter();
 
     StepTracker(Scanner scan) {
         this.scanner = scan;
-
-        for (int i = 0; i < monthToData.length; i++) {
-            monthToData[i] = new MonthData();
-        }
+        Arrays.setAll(monthToData, i -> new MonthData());
     }
 
     void addNewNumberStepsPerDay() {
@@ -28,16 +22,16 @@ class StepTracker {
         System.out.print(INPUT);
         // ввод и проверка номера месяца
         int month = scanner.nextInt();
-        if (month < 1 || month > 12) {
+        if (month < MIN_MONTH || month > MAX_MONTH) {
             System.out.println("Неверный номер месяца");
             return;
         }
 
-        System.out.println("Введите день от 1 до 30 (включительно)");
+        System.out.println("Введите день от " + MIN_DAY + " до " + MAX_DAY + " (включительно)");
         System.out.print(INPUT);
         // ввод и проверка дня
         int day = scanner.nextInt();
-        if (day < 1 || day > 30) {
+        if (day < MIN_DAY || day > MAX_DAY) {
             System.out.println("Указан неверный день");
             return;
         }
@@ -46,16 +40,16 @@ class StepTracker {
         System.out.print(INPUT);
         // ввод и проверка количества шагов
         int steps = scanner.nextInt();
-        if (steps <= 0) {
+        if (steps < MIN_STEPS) {
             System.out.println("Указано неверное количество шагов");
             return;
         }
 
         // получение соответствующего объекта MonthData из массива
-        MonthData monthData = monthToData[month - 1];
+        MonthData monthData = monthToData[month - MIN_MONTH];
 
         // сохранение введенных данных в массив
-        monthData.days[day - 1] = steps;
+        monthData.days[day - MIN_DAY] = steps;
     }
 
     void changeStepGoal() {
@@ -75,12 +69,12 @@ class StepTracker {
         System.out.print(INPUT);
         // ввод и проверка номера месяца
         int month = scanner.nextInt();
-        if (month < 1 || month > 12) {
+        if (month < MIN_MONTH || month > MAX_MONTH) {
             System.out.println("Неверный номер месяца");
             return;
         }
 
-        MonthData monthData = monthToData[month - 1]; // получение соответствующего месяца
+        MonthData monthData = monthToData[month - MIN_MONTH]; // получение соответствующего месяца
 
         int sumSteps = monthData.sumStepsFromMonth(); // получение суммы шагов за месяц
         monthData.printDaysAndStepsFromMonth(); // вывод общей статистики по дням
